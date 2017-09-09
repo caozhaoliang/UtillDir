@@ -7,9 +7,20 @@ using namespace Utills;
 
 int main()
 {
-	string filepath = "/opt/kds/mobile-stock/demo_curl/pthread/test.txt";
+	string filepath = "/opt/kds/mobile-stock/demo_curl/./pthread/test.txt";
 	FilePath fp(filepath);
-	fp.test();
+	// fp.test();
+	cout << fp.GetFilePath() << endl;
+	// cout << fp.GetFileNameFromPath(filepath)<<endl;
+	// cout << fp.GetDirectoryFromPath(filepath) << endl;
+	// std::vector<string> v_res;
+	// cout << fp.DividePathByFlags(filepath,"/",v_res)<<endl;
+	// for(vector<string>::iterator it = v_res.begin(); it!=v_res.end(); ++it) {
+	// 	cout << "seg:"<<*it<<endl;
+	// }
+	cout << fp.GetPathSection(filepath,-3)<< endl;
+	cout << fp.GetPathSection(filepath,4)<< endl;
+	cout << fp.GetPathSection(filepath,5)<< endl;
 
 	return 0;
 

@@ -8,7 +8,7 @@ namespace Utills{
 
 FilePath::FilePath(){}
 
-FilePath::FilePath(const string& _path){
+FilePath::FilePath(const string _path){
 	m_path = _path;
 }
 FilePath::~FilePath(){
@@ -21,13 +21,9 @@ string FilePath::GetFilePath(){
 /*  
 	@brief for get file's name from path
 */
-string FilePath::GetFileNameFromPath(const string _path=""){
-	string tmp;
-	if( !_path.empty() && _path!=""){
-		tmp=_path;
-	}else{
-		tmp = m_path;
-	}
+string FilePath::GetFileNameFromPath(const string _path ){
+	string tmp = _path;
+	
 	size_t pos;
 	if( (pos = tmp.find_last_of("/")) != string::npos){
 		return tmp.substr(pos+1);
@@ -38,13 +34,8 @@ string FilePath::GetFileNameFromPath(const string _path=""){
 /*  
 	@brief for get directory from path
 */
-string FilePath::GetDirectoryFromPath(const string _path = ""){
-	string tmp;
-	if( !_path.empty() && _path!=""){
-		tmp=_path;
-	}else{
-		tmp = m_path;
-	}
+string FilePath::GetDirectoryFromPath(const string _path ){
+	string tmp = m_path;
 	size_t pos;
 	if( (pos = tmp.find_last_of("/")) != string::npos){
 		return tmp.substr(0,pos);
@@ -55,15 +46,11 @@ string FilePath::GetDirectoryFromPath(const string _path = ""){
 /*  
 	@brief for Divide the path by flag
 */
-int FilePath::DividePathByFlags(string _path, const string flag, vector<string>& ves ){
-	string tmp;
-	if( !_path.empty() && _path!=""){
-		tmp=_path;
-	}else{
-		tmp = m_path;
-	}
+int FilePath::DividePathByFlags(const string _path, const string flag, vector<string>& ves ){
+	char tmp[64] = {0};
+	strncpy(tmp, const_cast<char*>(_path.c_str()), strlen(_path.c_str())+1 );
 	int i=0;
-	char* token = strtok(const_cast<char*>(tmp.c_str()),flag.c_str());
+	char* token = strtok(tmp,flag.c_str());
 	while(token){
 		ves.push_back(string(token));
 		i++;
@@ -77,12 +64,7 @@ int FilePath::DividePathByFlags(string _path, const string flag, vector<string>&
 	@brief for get a section string
 */
 string FilePath::GetPathSection(string _path,int position){
-	string tmp;
-	if( !_path.empty() && _path!="" ){
-		tmp=_path;
-	}else{
-		tmp = m_path;
-	}
+	string tmp = _path;
 
 	vector<string> v_res;
 	int pnum = 0;
